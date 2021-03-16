@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 const app = express();
+var fs = require('fs');
+var https = require('https');
 
 connectDB();
 app.use(cors());
@@ -22,7 +24,14 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
-    console.log(`Escuchando el puerto: ${PORT}`);
-});
+https.createServer({
+    cert: fs.readFileSync('api.progfy.com.crt'),
+    key: fs.readFileSync('api.progfy.com.key')
+  },app).listen(PORT, function(){
+     console.log(`Servidor https corriendo en el puerto ${PORT}`);
+ });
+
+// app.listen(PORT, () => {
+//     console.log(`Escuchando el puerto: ${PORT}`);
+// });
 
