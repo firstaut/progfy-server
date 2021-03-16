@@ -24,14 +24,14 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 4000;
 
-https.createServer({
-    cert: fs.readFileSync('api.progfy.com.crt'),
-    key: fs.readFileSync('api.progfy.com.key')
-  },app).listen(PORT, function(){
-     console.log(`Servidor https corriendo en el puerto ${PORT}`);
- });
+// https.createServer({
+//     cert: fs.readFileSync('api.progfy.com.crt'),
+//     key: fs.readFileSync('api.progfy.com.key')
+//   },app).listen(PORT, function(){
+//      console.log(`Servidor https corriendo en el puerto ${PORT}`);
+//  });
 
-// app.listen(PORT, () => {
-//     console.log(`Escuchando el puerto: ${PORT}`);
-// });
+app.listen(PORT, () => {
+    console.log(`Escuchando el puerto: ${PORT}`);
+});
 
